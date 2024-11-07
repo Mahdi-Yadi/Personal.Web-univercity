@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "خانه";
 }
     <header class="black-bg mh-header mh-fixed-nav nav-scroll mh-xs-mobile-nav" id="mh-header">
         <div class="overlay"></div>
@@ -793,9 +793,19 @@
                     <div class="col-sm-12 mh-copyright">
                         <div class="row">
                             <div class="col-sm-6">
+                                @if (User.Identity.IsAuthenticated)
+                                {
                                 <div class="text-right text-xs-center">
-                                    <p>فارسی و راست چین توسط <a href="https://rtl-html.ir/"> اچ تی ام ال فارسی</a></p>
+                                    <a asp-controller="Account" asp-action="Register">پنل مدیریت</a>
                                 </div>
+                                }
+                                else
+                                {
+                                    <div class="text-right text-xs-center">
+                                        <a asp-controller="Account" asp-action="Register">ورود</a>
+                                    </div>
+                                }
+                              
                             </div>
                             <div class="col-sm-6">
                                 <ul class="social-icon">

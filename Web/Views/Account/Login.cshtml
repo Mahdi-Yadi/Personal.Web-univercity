@@ -1,0 +1,28 @@
+﻿@model Web.Data.Models.Account.User
+@{
+    ViewData["Title"] = "ورود";
+}
+<div class="container">
+    <div class="row section-separator">
+        <div class="col-sm-12 section-title">
+            <h3>ورود </h3>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <form class="single-form quate-form wow fadeInUp" method="post" asp-controller="Account" asp-action="Login">
+                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <input class="contact-name form-control" id="name" type="email" placeholder="ایمیل" asp-for="Email">
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <input class="contact-name form-control" id="name" type="password" placeholder="کلمه عبور" asp-for="Password">
+                    </div>
+                    <div class="btn-form col-sm-12">
+                        <button type="submit" class="btn btn-fill btn-block" id="form-submit">ورود</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
