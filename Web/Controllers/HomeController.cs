@@ -1,26 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Web.Data.Contexts;
+
 namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly DBContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(DBContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
+            var site = _dbContext.Sites.FirstOrDefault(s => s.IsActive);
+
+            ViewBag.site = site;
+
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-      
+
     }
 }

@@ -1,5 +1,7 @@
-﻿@{
+﻿@using Web.Data.Models.Setting
+@{
     ViewData["Title"] = "خانه";
+    Site site = ViewBag.site as Site;
 }
     <header class="black-bg mh-header mh-fixed-nav nav-scroll mh-xs-mobile-nav" id="mh-header">
         <div class="overlay"></div>
@@ -7,7 +9,7 @@
             <div class="row">
                 <nav class="navbar navbar-expand-lg mh-nav nav-btn">
                     <a class="navbar-brand" href="#">
-                        <img src="/site/images/logo.png" alt="" class="img-fluid">
+                        <img src="/images/@site.ImageNameLogo" alt="" class="img-fluid" style="width: 100px;height: 45px">
                         <!-- <h2>Maha</h2> -->
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,13 +64,13 @@
                                 <span>سلام من</span>
                             </div>
 
-                            <h2> میلاد هستم</h2>
-                            <h4> مرجع قالب های html</h4>
+                            <h2>@site.Name</h2>
+                            <h4>@site.Bio</h4>
 
                             <ul>
-                                <li><i class="fa fa-envelope"></i><a href="mailto:">admin@netcopy.ir</a></li>
-                                <li><i class="fa fa-phone"></i><a href="callto:">+12 986 987 7867</a></li>
-                                <li><i class="fa fa-map-marker"></i><address>ایران،مشهد</address></li>
+                                <li><i class="fa fa-envelope"></i><a href="mailto:">@site.Email</a></li>
+                                <li><i class="fa fa-phone"></i><a href="callto:">@site.Phone</a></li>
+                                <li><i class="fa fa-map-marker"></i><address>@site.Address</address></li>
                             </ul>
 
                             <ul class="social-icon">
@@ -82,7 +84,7 @@
                     <div class="col-sm-6">
                         <div class="hero-img">
                             <div class="img-border">
-                                <img src="/site/images/hero.png" alt="" class="img-fluid">
+                                <img src="/images/@site.ImageNameLogo" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -107,7 +109,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-about-inner">
                         <h2>درباره من</h2>
-                        <p> این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش دهد، و طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم ایپسوم فارسی نگاشته شده است.</p>
+                        <p>@site.About</p>
                         <div class="mh-about-tag">
                             <ul>
                                 <li><span>php</span></li>
@@ -796,7 +798,7 @@
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                 <div class="text-right text-xs-center">
-                                    <a asp-controller="Account" asp-action="Register">پنل مدیریت</a>
+                                    <a asp-area="AdminPanel" asp-controller="Home" asp-action="Index">پنل مدیریت</a>
                                 </div>
                                 }
                                 else

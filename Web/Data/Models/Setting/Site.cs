@@ -21,5 +21,7 @@ namespace Web.Data.Models.Setting
 
         public string Address { get; set; }
 
+        public bool IsActive { get; set; }
+
     }
 }

@@ -1,0 +1,75 @@
+﻿@model Web.Data.Models.Setting.Site
+@{
+    ViewData["Title"] = "تنظیمات سایت";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">ویژه</h5>
+                    </div>
+                    <form method="post" asp-area="AdminPanel" asp-controller="Site" asp-action="SiteSetting" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id"/>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">نام سایت</h6>
+                                    <input type="text" asp-for="Name"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">تصویر سایت</h6>
+                                    <input type="file" name="imagefile"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">بیوگرافی</h6>
+                                    <input type="text" asp-for="Bio"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">درباره من</h6>
+                                    <input type="text" asp-for="About"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">تلفن</h6>
+                                    <input type="number" asp-for="Phone"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">ایمیل</h6>
+                                    <input type="email" asp-for="Email"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">آدرس</h6>
+                                    <input type="text" asp-for="Address"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">آدرس</h6>
+                                    <button type="submit" class="btn btn-outline-success">ثبت</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

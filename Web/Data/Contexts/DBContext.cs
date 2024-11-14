@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Web.Data.Models.Account;
+using Web.Data.Models.Setting;
 
 namespace Web.Data.Contexts
 {
@@ -11,6 +12,9 @@ namespace Web.Data.Contexts
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Site> Sites { get; set; }
+
 
     }
 }
