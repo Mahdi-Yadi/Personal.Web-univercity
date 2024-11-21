@@ -16,7 +16,12 @@ namespace Web.Controllers
         {
             var site = _dbContext.Sites.FirstOrDefault(s => s.IsActive);
 
+            var projects = _dbContext.Projects
+                .OrderByDescending(p => p.Id)
+                .Take(9).ToList();
+
             ViewBag.site = site;
+            ViewBag.project = projects;
 
             return View();
         }

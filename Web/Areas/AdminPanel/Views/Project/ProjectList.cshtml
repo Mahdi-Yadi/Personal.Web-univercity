@@ -1,0 +1,84 @@
+﻿@model Web.Data.ViewModels.PagedListViewModel<Web.Data.Models.Projects.Project>
+@{
+    ViewData["Title"] = "لیست پروژه ها";
+}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                    <a asp-area="AdminPanel" asp-controller="Project" asp-action="CreateProject" class="btn btn-outline-success">افزودن پروژه جدید</a>
+                </div>
+                <div class="card-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                        <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover dataTable" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="موتور رندر: activate to sort column descending">موتور رندر</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="مرورگر: activate to sort column ascending">مرورگر</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="سیستم عامل: activate to sort column ascending">سیستم عامل</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="ورژن: activate to sort column ascending">ورژن</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="امتیاز: activate to sort column ascending">امتیاز</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.Items != null)
+                                        {
+                                            @foreach (var item in Model.Items)
+                                            {
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">@item.Title</td>
+                                                    <td><img src="/images/projects/@item.ImageName" width="150" height="150" /></td>
+                                                    <td>
+                                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="EditProject" asp-route-id="@item.Id" class="btn btn-outline-primary">ویرایش</a>
+                                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="DeleteProject" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                    <tfoot>
+                                        <tr><th rowspan="1" colspan="1">موتور رندر</th><th rowspan="1" colspan="1">مرورگر</th><th rowspan="1" colspan="1">سیستم عامل</th><th rowspan="1" colspan="1">ورژن</th><th rowspan="1" colspan="1">امتیاز</th></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-12 col-md-5"></div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">                                    
+                                    @if (Model.HasPreviousPage)
+                                    {
+                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="ProjectList" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-pagesize="@Model.PageSize">
+                                            صفحه قبلی
+                                        </a>
+                                    }
+                                    
+                                    @for (int i = 1; i <= Model.TotalPages; i++)
+                                    {
+                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="ProjectList" asp-route-pageNumber="@i" asp-route-pagesize="@Model.PageSize">
+                                            @i
+                                        </a>
+                                    }
+                                    
+                                    
+                                    @if (Model.HasNextPage)
+                                    {
+                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="ProjectList" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-pagesize="@Model.PageSize">
+                                            صفحه بعدی
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

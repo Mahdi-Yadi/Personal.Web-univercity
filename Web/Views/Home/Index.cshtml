@@ -1,7 +1,9 @@
 ﻿@using Web.Data.Models.Setting
+@using Web.Data.Models.Projects
 @{
     ViewData["Title"] = "خانه";
     Site site = ViewBag.site as Site;
+    List<Project> projects = ViewBag.project as List<Project>;
 }
 <header class="black-bg mh-header mh-fixed-nav nav-scroll mh-xs-mobile-nav" id="mh-header">
     <div class="overlay"></div>
@@ -375,105 +377,23 @@
                 </div>
                 <div class="mh-project-gallery col-sm-12" id="project-gallery">
                     <div class="portfolioContainer row">
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
-                            <figure>
-                                <img src="/site/images/portfolio/g1.jpg" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 ui mockup">
-                            <figure>
-                                <img src="/site/images/portfolio/g2.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g2.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
-                            <figure>
-                                <img src="/site/images/portfolio/g3.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g3.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 branding">
-                            <figure>
-                                <img src="/site/images/portfolio/g5.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g5.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
-                            <figure>
-                                <img src="/site/images/portfolio/g4.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g4.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 branding">
-                            <figure>
-                                <img src="/site/images/portfolio/g6.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g6.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 branding">
-                            <figure>
-                                <img src="/site/images/portfolio/g8.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g8.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 ui">
-                            <figure>
-                                <img src="/site/images/portfolio/g9.png" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g9.png" data-fancybox data-src="#mh"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid-item col-md-4 col-sm-6 col-xs-12 branding">
-                            <figure>
-                                <img src="/site/images/portfolio/g7.jpg" alt="img04">
-                                <figcaption class="fig-caption">
-                                    <i class="fa fa-search"></i>
-                                    <h5 class="title">طراحی خلاقانه</h5>
-                                    <span class="sub-title">عکاسی</span>
-                                    <a href="/site/images/portfolio/g7.jpg" data-fancybox="gallery"></a>
-                                </figcaption>
-                            </figure>
-                        </div>
+                        @if (projects.Count > 0)
+                        {
+                            @foreach (var item in projects)
+                            {
+                                <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
+                                    <figure>
+                                        <img src="/images/projects/@item.ImageName" alt="@item.Title" width="340" height="246">
+                                        <figcaption class="fig-caption">
+                                            <i class="fa fa-search"></i>
+                                            <h5 class="title">@item.Title</h5>
+                                            <span class="sub-title">عکاسی</span>
+                                            <a data-fancybox data-src="#mh"></a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            }
+                        }
                     </div> <!-- End: .grid .project-gallery -->
                 </div> <!-- End: .grid .project-gallery -->
             </div> <!-- End: .part -->

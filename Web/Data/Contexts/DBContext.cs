@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Web.Data.Models.Account;
+using Web.Data.Models.Projects;
 using Web.Data.Models.Setting;
 
 namespace Web.Data.Contexts
@@ -15,6 +16,6 @@ namespace Web.Data.Contexts
 
         public DbSet<Site> Sites { get; set; }
 
-
+        public DbSet<Project> Projects { get; set; }
     }
 }
