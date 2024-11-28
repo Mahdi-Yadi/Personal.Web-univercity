@@ -18,7 +18,9 @@ namespace Web.Controllers
 
             var projects = _dbContext.Projects
                 .OrderByDescending(p => p.Id)
-                .Take(9).ToList();
+                .Where(p => p.IsDeleted == false)
+                .Take(9)
+                .ToList();
 
             ViewBag.site = site;
             ViewBag.project = projects;

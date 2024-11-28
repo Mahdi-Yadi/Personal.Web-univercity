@@ -14,5 +14,8 @@ namespace Web.Data.Models.Account
 
         public bool IsAdmin { get; set; }
 
+        public bool IsDeleted { get; set; }
+
+
     }
 }

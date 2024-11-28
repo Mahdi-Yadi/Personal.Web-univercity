@@ -1,0 +1,45 @@
+﻿@model Web.Data.Models.Projects.Project
+@{
+    ViewData["Title"] = "بازگرداندن";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">ویژه</h5>
+                    </div>
+                    <form method="post" asp-area="AdminPanel" asp-controller="Project" asp-action="RecoveryProject">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImageName" />
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">عنوان پروژه</h6>
+                                    <input type="text" asp-for="Title" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">تصویر پروژه</h6>
+                                    <img src="/images/projects/@Model.ImageName" width="150" height="150" />
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-outline-info">بازگرداندن</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

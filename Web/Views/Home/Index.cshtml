@@ -387,8 +387,7 @@
                                         <figcaption class="fig-caption">
                                             <i class="fa fa-search"></i>
                                             <h5 class="title">@item.Title</h5>
-                                            <span class="sub-title">عکاسی</span>
-                                            <a data-fancybox data-src="#mh"></a>
+                                            <a data-fancybox data-src="#mh-@item.Id"></a>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -399,40 +398,32 @@
             </div> <!-- End: .part -->
         </div> <!-- End: .row -->
     </div>
-    <div class="mh-portfolio-modal" id="mh">
-        <div class="container">
-            <div class="row mh-portfolio-modal-inner">
-                <div class="col-sm-5">
-                    <h2>نام پروژه</h2>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد </p>
-
-                    <div class="mh-about-tag">
-                        <ul>
-                            <li><span>php</span></li>
-                            <li><span>html</span></li>
-                            <li><span>css</span></li>
-                            <li><span>php</span></li>
-                            <li><span>wordpress</span></li>
-                            <li><span>React</span></li>
-                            <li><span>Javascript</span></li>
-                        </ul>
+@if (projects.Count > 0)
+{
+    @foreach (var item in projects)
+    {
+        <div class="mh-portfolio-modal" id="mh-@item.Id">
+            <div class="container">
+                <div class="row mh-portfolio-modal-inner">
+                    <div class="col-sm-5">
+                        <h2>@item.Title</h2>
+                      @item.Text
+                        <a href="#" class="btn btn-fill">مشاهده</a>
                     </div>
-                    <a href="#" class="btn btn-fill">مشاهده</a>
-                </div>
-                <div class="col-sm-7">
-                    <div class="mh-portfolio-modal-img">
-                        <img src="/site/images/pr-1.jif" alt="" class="img-fluid">
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
-                        <img src="/site/images/pr-1.jif" alt="" class="img-fluid">
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                    <div class="col-sm-7">
+                        <div class="mh-portfolio-modal-img">
+                                <img src="/images/projects/@item.ImageName" alt="" class="img-fluid">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                            <img src="/site/images/pr-1.jif" alt="" class="img-fluid">
+                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    }
+}
+    </section>
 
 <!--
 ===================

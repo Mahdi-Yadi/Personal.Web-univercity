@@ -91,13 +91,153 @@ public class ProjectController : Controller
     [HttpGet("EditProject/{id}")]
     public IActionResult EditProject(int id)
     {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        return View(project);
+    }
+
+    [HttpPost("EditProject/{id}")]
+    public IActionResult EditProject(int id,Project model, IFormFile imageFile)
+    {
+        if (ModelState.IsValid)
+        {
+            var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+            if (imageFile != null)
+            {
+                var imageName = DateTime.Now.ToString("MMddyyyyhhmmss") + Path.GetExtension(imageFile.FileName);
+
+                string OriginPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/projects/" + imageName);
+
+                if (!string.IsNullOrEmpty(project.ImageName))
+                {
+                    string OldOriginPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/projects/" + project.ImageName);
+
+                    if (System.IO.File.Exists(OldOriginPath))
+                        System.IO.File.Delete(OldOriginPath);
+                }
+
+                using (var stream = new FileStream(OriginPath, FileMode.Create))
+                {
+                    if (!Directory.Exists(OriginPath))
+                        imageFile.CopyTo(stream);
+                }
+
+                project.ImageName = imageName;
+            }
+            else
+            {
+                project.ImageName = model.ImageName;
+            }
+
+            project.Title = model.Title;
+            project.Text = model.Text;
+
+            try
+            {
+                _dbContext.Projects.Update(project);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return RedirectToAction(nameof(ProjectList));
+        }
+
         return View();
     }
 
     [HttpGet("DeleteProject/{id}")]
     public IActionResult DeleteProject(int id)
     {
-        return View();
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        return View(project);
     }
+
+    [HttpPost("DeleteProject/{id}")]
+    public IActionResult DeleteProject(int id,string title)
+    {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        project.IsDeleted = true;
+
+        _dbContext.Projects.Update(project);
+        _dbContext.SaveChanges();
+
+        return RedirectToAction("ProjectList");
+    }
+
+    [HttpGet("DeleteProject2/{id}")]
+    public IActionResult DeleteProject2(int id)
+    {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        return View(project);
+    }
+
+    [HttpPost("DeleteProject2/{id}")]
+    public IActionResult DeleteProject2(int id, string title)
+    {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        if (!string.IsNullOrEmpty(project.ImageName))
+        {
+            string OldOriginPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/projects/" + project.ImageName);
+
+            if (System.IO.File.Exists(OldOriginPath))
+                System.IO.File.Delete(OldOriginPath);
+        }
+
+        _dbContext.Projects.Remove(project);
+        _dbContext.SaveChanges();
+
+        return RedirectToAction("ProjectList");
+    }
+
+    [HttpGet("RecoveryProject/{id}")]
+    public IActionResult RecoveryProject(int id)
+    {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        return View(project);
+    }
+
+    [HttpPost("RecoveryProject/{id}")]
+    public IActionResult RecoveryProject(int id, string title)
+    {
+        var project = _dbContext.Projects.FirstOrDefault(p => p.Id == id);
+
+        if (project == null)
+            return RedirectToAction("ProjectList");
+
+        project.IsDeleted = false;
+
+        _dbContext.Projects.Update(project);
+        _dbContext.SaveChanges();
+
+        return RedirectToAction("ProjectList");
+    }
+
 
 }

@@ -1,7 +1,52 @@
-﻿
+﻿@model Web.Data.Models.Projects.Project
 @{
-    ViewData["Title"] = "EditProject";
+    ViewData["Title"] = "ویرایش پروژه " + Model.Title;
 }
 
-<h1>EditProject</h1>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
 
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">ویژه</h5>
+                    </div>
+                    <form method="post" asp-area="AdminPanel" asp-controller="Project" asp-action="EditProject" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImageName" />
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">عنوان پروژه</h6>
+                                    <input type="text" asp-for="Title"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">تصویر پروژه</h6>
+                                    <img src="/images/projects/@Model.ImageName" />
+                                    <input type="file" name="imageFile"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">توضیحات پروژه </h6>
+                                    <textarea asp-for="Text"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-outline-success">ویرایش</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

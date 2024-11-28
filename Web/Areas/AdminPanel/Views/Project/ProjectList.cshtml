@@ -34,7 +34,15 @@
                                                     <td><img src="/images/projects/@item.ImageName" width="150" height="150" /></td>
                                                     <td>
                                                         <a asp-area="AdminPanel" asp-controller="Project" asp-action="EditProject" asp-route-id="@item.Id" class="btn btn-outline-primary">ویرایش</a>
-                                                        <a asp-area="AdminPanel" asp-controller="Project" asp-action="DeleteProject" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                                                        @if (item.IsDeleted == false)
+                                                        {
+                                                            <a asp-area="AdminPanel" asp-controller="Project" asp-action="DeleteProject" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                                                            <a asp-area="AdminPanel" asp-controller="Project" asp-action="DeleteProject2" asp-route-id="@item.Id" class="btn btn-outline-dark">حذف کامل</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-area="AdminPanel" asp-controller="Project" asp-action="RecoveryProject" asp-route-id="@item.Id" class="btn btn-outline-secondary">بازگرداندن</a>
+                                                        }
                                                     </td>
                                                 </tr>
                                             }

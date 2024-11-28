@@ -13,6 +13,7 @@ namespace Web.Data.Models.Projects
 
         public string Text { get; set; }
 
+        public bool IsDeleted { get; set; }
 
     }
 }
