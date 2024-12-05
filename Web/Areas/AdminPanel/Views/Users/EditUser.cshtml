@@ -1,7 +1,67 @@
-﻿
+﻿@using Humanizer
+@model Web.Data.Models.Account.User
 @{
-    ViewData["Title"] = "EditUser";
+    ViewData["Title"] = Model.UserName;
 }
 
-<h1>EditUser</h1>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">@ViewData["Title"] ویرایش کاربر</h5>
+                    </div>
+                    <form method="post" asp-area="AdminPanel" asp-controller="Users" asp-action="EditUser">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">UserName</h6>
+                                    <input type="text" asp-for="UserName" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">Email</h6>
+                                    <input type="text" asp-for="Email" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">Password</h6>
+                                    <input type="text" name="password" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card-body">
+                                    <h6 class="card-title mb-2 text-bold">IsAdmin</h6>
+                                    
+                                    @if (Model.IsAdmin)
+                                    {
+                                        <input type="checkbox" asp-for="IsAdmin" checked=""/>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" asp-for="IsAdmin" />
+                                    }
+                                    
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-outline-success">ویرایش</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 

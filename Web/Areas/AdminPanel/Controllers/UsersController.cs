@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Web.Codes;
 using Web.Data.Contexts;
 using Web.Data.Models.Account;
 using Web.Data.ViewModels;
@@ -40,7 +41,35 @@ namespace Web.Areas.AdminPanel.Controllers
         [HttpGet("EditUser/{id}")]
         public IActionResult EditUser(int id)
         {
-            return View();
+            var user = _dbContext.Users.SingleOrDefault(p => p.Id == id);
+
+            if (user == null)
+            {
+                return RedirectToAction(nameof(UsersList));
+            }
+
+            return View(user);
+        }
+
+        [HttpPost("EditUser/{id}")]
+        public IActionResult EditUser(int id,User user)
+        {
+            var olduser = _dbContext.Users.SingleOrDefault(p => p.Id == id);
+
+            if (user == null)
+            {
+                return RedirectToAction(nameof(UsersList));
+            }
+
+            olduser.Email = user.Email;
+            olduser.IsAdmin = user.IsAdmin;
+            olduser.UserName = user.UserName;
+            olduser.Password = Hashing.EncodePasswordMd5(user.Password);
+
+            _dbContext.Users.Update(olduser);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction(nameof(UsersList));
         }
 
 
